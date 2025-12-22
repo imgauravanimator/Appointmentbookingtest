@@ -105,7 +105,11 @@
       );
 
       const data = await res.json();
-      addMessage(data.response || "No response", "bot");
+      addMessage(
+  data.response || data.output || JSON.stringify(data),
+  "bot"
+);
+
     } catch (e) {
       addMessage("Error connecting to server", "bot");
     }
