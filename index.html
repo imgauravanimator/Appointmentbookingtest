@@ -100,9 +100,12 @@
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ message: text })
+          body: JSON.stringify({ message: "ping" })
         }
-      );
+      )
+        .then(r => r.json())
+.then(console.log)
+.catch(console.error);
 
       const data = await res.json();
       addMessage(
@@ -110,9 +113,14 @@
   "bot"
 );
 
-    } catch (e) {
-      addMessage("Error connecting to server", "bot");
-    }
+   catch (e) {
+  console.error("Fetch failed:", e);
+  addMessage(
+    "Server is temporarily unavailable. Please try again in a moment.",
+    "bot"
+  );
+}
+
   }
 
   input.addEventListener("keypress", function (e) {
